@@ -1,4 +1,0 @@
-ansible web -m copy -a 'content="Hello World" dest=/etc/motd'
-ansible web -m shell -a "cat /etc/motd"
-ansible -u root web --ask-pass -m raw -a 'yum install telnet -y'
-

@@ -1,0 +1,21 @@
+Commands:-
+```````````
+$ ansible web -m copy -a 'content="Hello World" dest=/etc/motd'
+$ ansible web -m shell -a "cat /etc/motd"
+$ ansible -u root web --ask-pass -m raw -a 'yum install telnet -y'
+
+Optimizing vim for YAML
+-----------------------
+In ~/.vimrc, include the following setting.
+autocmd FileType yaml setlocal ai ts=2 sw=2 et
+
+$ ansible-playbook --syntax-check install-vsftpd.yml ## Will perform a syntax check
+
+-> Use -v[vvv] to increase output verbosity
+   -> -v will show the task results
+   -> -vv will show the task results and task configuration
+   -> -vvv also shows information about connects to managed hosts
+   -> -vvvv adds information about plug-ins, user used to run scripts and names of the scripts that executed
+
+-> Use the -C opton to perform the dry run
+

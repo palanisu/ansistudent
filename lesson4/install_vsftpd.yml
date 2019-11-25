@@ -1,0 +1,17 @@
+---
+- name: Install vsftpd package
+  hosts: web
+  tasks:
+  - name: Install vsftpd
+    yum:
+      name: vsftpd
+  - name: Enable vsftpd
+    service:
+      name: vsftpd
+      enabled: true
+  - name: Create README file
+    copy:
+      content: "Welcome to this FTP server"
+      dest: /var/ftp/pub/README
+      force: no
+      mode: 0444 

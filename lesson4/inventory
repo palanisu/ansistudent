@@ -1,5 +1,3 @@
-ansible3.example.com
-
 [web]
 ansible1.example.com
 

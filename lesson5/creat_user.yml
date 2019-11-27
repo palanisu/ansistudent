@@ -1,0 +1,9 @@
+---
+- name: User creation
+  hosts: ansible1.example.com
+  vars:
+    user: lisa
+  tasks:
+    - name: Create a user {{ user }}
+      user:
+        name: "{{ user }}"

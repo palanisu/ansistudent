@@ -19,3 +19,40 @@ $ ansible-playbook --syntax-check install-vsftpd.yml ## Will perform a syntax ch
 
 -> Use the -C opton to perform the dry run
 
+Variables
+---------
+- {{ }}
+
+  - inventory
+  - include
+  - local fact
+
+Facts
+  Conditionals
+
+-> A variable is a label that is assigned to a specific value to make it easy to refer to that value throughout the playbook.
+-> A fact is a special type of variable, that refers to a current state of an Ansible managed system.
+
+o Variables can be defined in a vars block in the beginning of playbook.
+ - hosts: all
+   vars:
+     web_package: httpd
+
+o Alternatively, variables can be defined in a variable file, which will be included from the playbook.
+ - hosts: all
+   vars_files:
+     - vars/users.yml
+
+o If the variable is the first element, using quotes is mandatory
+
+
+o Variables can be set different type of scope
+  o Global Scope: this is when a variable is set from inventory or the command line
+  o Play scope: this is applied when it is set from play
+  o Host scope: this is applied when set in inventory or using a host variable inclusion
+
+o When a variable is set from the command line, it'll overwrite anything else
+  $ ansible-playbook site.yml -e "web_package=apache"
+
+
+

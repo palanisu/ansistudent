@@ -1,0 +1,29 @@
+---
+- name: Uninstall packages and disable services
+  hosts: ansible1.example.com
+  tasks:
+    - name: Disable firewall port
+      firewalld:
+        service: http
+        permanent: true
+        state: disabled
+        immediate: yes
+
+    - name: Disable Services
+      service:
+        name: firewalld
+        state: stopped
+        enabled: no
+    - name: Diable service
+      service:
+        name: httpd
+        state: stopped
+        enabled: no
+    - name: Uninstall packages
+      package:
+        name:
+          - httpd
+          - firewalld
+        state: absent
+        
+          

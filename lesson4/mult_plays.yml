@@ -1,0 +1,45 @@
+---
+- name: Install, Enable, Start and Test service with multiple plays.
+  hosts: ansible1.example.com
+  tasks:
+    - name: Install Packages
+      yum:
+        name:
+          - httpd
+          - firewalld
+        state: latest
+
+    - name: Install welcome page
+      copy:
+        content: "Hello World"
+        dest: /var/www/html/index.html
+
+    - name: Start web service
+      service:
+        name: httpd
+        enabled: true
+        state: started
+
+    - name: Start firewall service
+      service:
+        name: firewalld
+        enabled: true
+        state: started
+
+    - name: Allow web service in firewall
+      firewalld:
+        service: http
+        permanent: true
+        state: enabled
+        immediate: yes
+
+- name: Test web service
+  hosts: localhost
+  tasks:
+    - name: Connect to the web server
+      uri:
+        url: http://ansible1.example.com
+        return_content: yes
+        status_code: 200
+
+

@@ -1,0 +1,9 @@
+---
+- name: test array values
+  hosts: nodes
+  vars_files:
+    - vars/users.yml
+  tasks:
+    - name: to check user details
+      debug:
+        msg: "User {{ users.linda.username }} has home dir {{ users.linda.homedir }} and shell {{ users.linda.shell }}"

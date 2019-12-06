@@ -1,0 +1,12 @@
+---
+- name: Check group variables
+  hosts: lamp
+  vars_files:
+    - vars/lamp
+  tasks:
+    - name: this is the {{ web_package }} package
+      debug:
+        msg: "Installing {{ web_package }}"
+    - name: this is the {{ web_service }} service
+      debug:
+        msg: "Starting {{ web_service }} service"

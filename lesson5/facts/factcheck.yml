@@ -1,0 +1,28 @@
+---
+- name: Check and copy fact file
+  hosts: web
+  vars:
+    remote_dir: /etc/ansible/facts.d/
+    local_file: localfacts.facts
+  tasks:
+    - name: Create Dir
+      file:
+        state: directory
+        path: "{{ remote_dir }}"
+        recurse : yes
+    - name: install new facts
+      copy:
+        src: "{{ local_file }}"
+        dest: "{{ remote_dir }}"
+
+- name: Install and start service
+  hosts: web
+  tasks:
+    - name: Install the package
+      yum:
+        name: "{{ ansible_local.localfacts.localfacts.package }}"
+    - name: Start the service
+      service:
+        name: "{{ ansible_local.localfacts.localfacts.service }}"
+        state: started
+       # name: "{{ ansible_local.localfacts.localfacts.state }}"

@@ -55,4 +55,12 @@ o When a variable is set from the command line, it'll overwrite anything else
   $ ansible-playbook site.yml -e "web_package=apache"
 
 
-
+ansible-vault
+-------------
+o To create a encrypted file, use $ansible-vault create playbook.yml
+o This command will prompt for a new password, and open the file in vi for further editing
+o As an alternative for entering password on the prompt $ansible-vault create --vault-password-file=vault-pass playbook.yml
+o To view a vault encrypted file, use $ansible-vault view playbook.yml
+o To edit, use $$ansible-vault edit playbook.yml
+o To encrypt $ansible-vault encrypt playbook.yml
+o To decrypt $ansible-vault decrypt playbook.yml

@@ -1,0 +1,13 @@
+---
+- name: start some services
+  hosts: web
+  vars:
+    my_services:
+      - crond
+      - sshd
+  tasks:
+    - name: start and stop services
+      service:
+        name: "{{ item }}"
+        state: restarted
+      loop: "{{ my_services }}"

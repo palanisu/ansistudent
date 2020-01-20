@@ -1,0 +1,14 @@
+---
+- name: create users
+  hosts: web
+  tasks:
+    - name: Create users and groups
+      user:
+        name: "{{ item.name }}"
+        state: absent
+        groups: "{{ item.groups }}"
+      loop:
+        - name: ganish
+          groups: wheel
+        - name: devesh
+          groups: users
